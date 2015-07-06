@@ -1,0 +1,11 @@
+language: python
+python:
+  - "2.7"
+  - "3.4"
+install:
+  - pip install -U -r requirements.txt
+  - pip install -U -r test-requirements.txt
+  - pip install -U git+https://github.com/lxc/pylxd#egg=pylxd
+  - pip install -U git+https://github.com/openstack/nova#egg=nova
+before_script: flake8 --ignore=E123,E125 --exclude=doc,tools/db/schema_diff.py,tools/colorizer.py
+script: python setup.py testr --slowest
